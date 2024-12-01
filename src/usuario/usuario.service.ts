@@ -19,12 +19,15 @@ export class UsuarioService {
   private usuariosValidos = ['Decana', 'Profesor'];
 
   async crearUsuario(usuario: UsuarioEntity): Promise<UsuarioEntity> {
+    console.log('ENTRA AL METODO');
     if (!this.usuariosValidos.includes(usuario.rol)) {
       throw new BusinessLogicException(
         'Rol invalido',
         BusinessError.BAD_REQUEST,
       );
     }
+
+    console.log('PASA EL ROL');
 
     if (
       !this.gruposValidos.includes(usuario.grupoInvestigacion) &&
@@ -36,6 +39,8 @@ export class UsuarioService {
       );
     }
 
+    console.log('PASA EL GRUPO');
+
     if (
       usuario.rol === 'Decana' &&
       usuario.numeroExtension.toString().length !== 8
@@ -45,6 +50,8 @@ export class UsuarioService {
         BusinessError.BAD_REQUEST,
       );
     }
+
+    console.log('PASA LA EXTENSION');
 
     return await this.usuarioRepository.save(usuario);
   }
