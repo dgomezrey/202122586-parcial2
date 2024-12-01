@@ -1,5 +1,5 @@
-import { BonoEntity } from 'src/bono/bono.entity/bono.entity';
-import { UsuarioEntity } from 'src/usuario/usuario.entity/usuario.entity';
+import { BonoEntity } from '../bono/bono.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 import {
   Column,
   Entity,
@@ -10,17 +10,17 @@ import {
 
 @Entity()
 export class ClaseEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255 })
   nombre: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 50, unique: true })
   codigo: string;
 
-  @Column()
-  creditos: number;
+  @Column({ type: 'int' })
+  numeroCreditos: number;
 
   @ManyToOne(() => UsuarioEntity, (usuario) => usuario.clases)
   usuario: UsuarioEntity;

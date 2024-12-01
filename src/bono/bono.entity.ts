@@ -1,20 +1,20 @@
-import { ClaseEntity } from 'src/clase/clase.entity/clase.entity';
-import { UsuarioEntity } from 'src/usuario/usuario.entity/usuario.entity';
+import { ClaseEntity } from '../clase/clase.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class BonoEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column()
+  @Column({ type: 'int' })
   monto: number;
 
-  @Column()
+  @Column({ type: 'double precision' })
   calificacion: number;
 
-  @Column()
-  palabra_clave: string;
+  @Column({ type: 'varchar', length: 255 })
+  palabraClave: string;
 
   @ManyToOne(() => UsuarioEntity, (usuario) => usuario.bonos)
   usuario: UsuarioEntity;

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { UsuarioService } from './usuario.service';
+import { UsuarioService } from '../usuario/usuario.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsuarioEntity } from './usuario.entity/usuario.entity';
+import { UsuarioEntity } from '../usuario/usuario.entity';
 
 @Module({
   providers: [UsuarioService],
